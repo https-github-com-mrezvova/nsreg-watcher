@@ -16,4 +16,4 @@ echo -n '' > $ERROR_LOG
 cd src/grabber/nsreg
 
 scrapy crawl monitor --logfile $ERROR_LOG --loglevel $LOG_LEVEL
-scrapy list | awk '$1 != "monitor" {print $1}' | xargs -n 1 scrapy crawl --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy list | awk '$1 != "monitor" {print $1}' | tr '\n' ' ' | xargs scrapy multicrawl --logfile $ERROR_LOG --loglevel $LOG_LEVEL
