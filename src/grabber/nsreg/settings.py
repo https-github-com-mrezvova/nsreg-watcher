@@ -26,7 +26,7 @@ BOT_NAME = 'nsreg'
 
 SPIDER_MODULES = ['nsreg.spiders']
 NEWSPIDER_MODULE = 'nsreg.spiders'
-
+COMMANDS_MODULE = "scrapy_commands"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = 'nsreg (+http://www.yourdomain.com)'
