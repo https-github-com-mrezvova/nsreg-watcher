@@ -21,8 +21,8 @@ class NsregWebnamesSpider(scrapy.Spider):
             site_names=self.site_names,
             regex=REGEX_PATTERN,
             path={
-                'price_reg': '/html/body/section[1]/div[4]/div[1]/div[2]/div/table/tbody/tr[1]/td[2]/strong/text()',
-                'price_prolong': '/html/body/section[1]/div[4]/div[1]/div[2]/div/table/tbody/tr[3]/td[2]/strong/text()',
+                'price_reg': '/html/body/section[1]/div[4]/div[1]/div[2]/div/table/tbody/tr[1]/td[2]/strong/span/text()',
+                'price_prolong': '/html/body/section[1]/div[4]/div[1]/div[2]/div/table/tbody/tr[3]/td[2]/strong/span/text()',
                 'price_change': '/html/body/div[2]/div/div[2]/div[1]/div/div/div[1]/div[2]/span/text()'
             }
         )
