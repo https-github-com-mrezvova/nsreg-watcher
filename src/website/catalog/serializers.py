@@ -15,3 +15,13 @@ class PriceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Price
         fields = "__all__"
+
+
+class ContactSerializer(serializers.Serializer):
+    name = serializers.CharField(max_length=100, label='Ваше Имя')
+    contact = serializers.CharField(max_length=100, label='Телефон или email')
+    speciality = serializers.CharField(max_length=100, label='Специальность')
+    message = serializers.CharField(max_length=1000, label='Сообщение')
+
+    class Meta:
+        fields = "__all__"

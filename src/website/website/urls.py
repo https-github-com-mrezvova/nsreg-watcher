@@ -24,6 +24,7 @@ urlpatterns = [
     path('list/', views.registrator_list, name='registrator_list'),
     path('api/v1/list/', views.RegistratorList.as_view(), name='registrator_list_api'),
     path('api/v1/<int:pk>/', views.RegistratorDetail.as_view(), name='registrator_details_api'),
+    path('api/v1/contact/', views.ContactView.as_view(), name='contact_api'),
     path('partner/<int:id>/', views.registrator_details, name='registrator_details'),
     path('admin/', admin.site.urls),
     path('about-us/', views.about, name='about-us'),

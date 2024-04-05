@@ -2,11 +2,13 @@ from django.shortcuts import render
 from django.http import HttpResponseNotFound
 from django.db.models import Q
 from rest_framework import generics
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 from .models import Price, Registrator, TeamMember
 from .forms import CompaniesSortForm, ContactForm
 from .tasks import send_join_team_mail
-from .serializers import PriceSerializer
+from .serializers import PriceSerializer, ContactSerializer
 
 
 SORT_FIELD_NAMES = {
@@ -42,6 +44,25 @@ class RegistratorList(generics.ListAPIView):
 class RegistratorDetail(generics.RetrieveAPIView):
     serializer_class = PriceSerializer
     queryset = Price.objects.all()
+
+
+class ContactView(generics.GenericAPIView):
+    serializer_class = ContactSerializer
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+
+        if serializer.is_valid():
+            name = serializer.validated_data.get('name')
+            contact = serializer.validated_data.get('contact')
+            speciality = serializer.validated_data.get('speciality')
+            message = serializer.validated_data.get('message')
+
+            send_join_team_mail.delay(name, contact, speciality, message)
+
+            return Response({'message': 'email sent'})
+
+        return Response(serializer.errors, status=400)
 
 
 def registrator_list(request):
