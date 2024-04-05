@@ -9,8 +9,8 @@ SORT_BY_CHOICES = [
 ]
 
 SORT_IN_REVERSE_ORDER = [
-    ('', "возрастания"),
-    ('-', "убывания"),
+    ('', "По возрастанию"),
+    ('-', "По убыванию"),
 ]
 
 
@@ -18,13 +18,35 @@ class CompaniesSortForm(forms.Form):
     sort_by = forms.ChoiceField(
         label="Сортировать по",
         choices=SORT_BY_CHOICES,
+        required=False,
     )
     reverse_order = forms.ChoiceField(
-        label="В порядке",
+        label="",
         choices=SORT_IN_REVERSE_ORDER,
         required=False,
     )
     search = forms.CharField(
-        label="Поиск",
+        label="",
         max_length=50,
-        required=False,)
+        required=False,
+        widget=forms.TextInput(attrs={'placeholder': 'Поиск...'}),
+        )
+
+
+class ContactForm(forms.Form):
+    name = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={'placeholder': 'Ваше Имя'})
+        )
+    contact = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={'placeholder': 'Телефон или email'})
+        )
+    speciality = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={'placeholder': 'Специальность'})
+        )
+    message = forms.CharField(
+        max_length=1000,
+        widget=forms.TextInput(attrs={'placeholder': 'Сообщение'})
+        )

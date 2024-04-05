@@ -97,3 +97,39 @@ class ParseError(models.Model):
 
     class Meta:
         app_label = 'catalog'
+
+
+class TeamMember(models.Model):
+    GENDER_CHOICES = [
+        ('M', 'М'),
+        ('F', 'Ж'),
+    ]
+
+    id = models.AutoField(primary_key=True)
+    name = models.CharField("Имя", max_length=255)
+    title = models.CharField("Роль", max_length=255)
+    contact = models.CharField("https://github.com/", max_length=255, null=True, blank=True)
+    photo = models.ImageField("Фото", upload_to='pictures/', null=True, blank=True)
+    sex = models.CharField("Пол", max_length=1, choices=GENDER_CHOICES)
+
+    def __str__(self):
+        return self.name
+
+    def get_avatar(self):
+        if not self.photo:
+            if self.sex == 'M':
+                return 'pictures/no-photo-employee-male-with-backgroud.png'
+            elif self.sex == 'F':
+                return 'pictures/no-photo-employee-female-with-backgroud.png'
+        else:
+            return f'pictures/{self.photo.url.split("/")[-1]}'
+
+    def get_contact_url(self):
+        if self.contact is None:
+            return "#"
+        return f'https:///github.com/{self.contact}'
+
+    class Meta:
+        verbose_name = 'Участник'
+        verbose_name_plural = 'Участники'
+        app_label = 'catalog'

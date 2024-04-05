@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% load static %}  
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,13 +24,11 @@
     <link rel="icon" href="../static/ecoIcons/favicon.svg">
 
 </head>
-<body>
-
-    {% load static %}
-
+{% block content %}
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" >
     <link rel="stylesheet" href="{% static 'icons/font/bootstrap-icons.css' %}" >
-    <link rel="stylesheet" href="{% static 'css/main.css' %}" > 
+    <!-- <link rel="stylesheet" href="{% static 'css/main.css' %}" >   -->
+    <link rel="stylesheet" href="{% static 'css/project.css' %}" > 
 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,86 +36,45 @@
     <link href="https://fonts.googleapis.com/css2?family=Mulish&display=swap" rel="stylesheet">
 
 
-    {% include 'navbar.html' %}
 
 
 
-    <div class="container">
+
+<body>    
         <h1 class="headerone">Проект</h1>
-        <!-- <img src="../static/ecoIcons/Meeting.jpg" alt="Фото на фон" class="background-image"> -->
-        <div class="text-block-1">
-          Ecodomen - агрегатор регистраторов доменных имен
-          <br>
-          <br>
-          Многие пользователи интернета не разбираются в тонкостях хостинга и доменов. При попытке создать собственный сайт они часто переплачивают, обращаясь к крупным регистраторам. Мы протягиваем таким людям руку помощи, упрощая процесс поиска и регистрации доменных имён. Наше приложение помогает найти наилучшие предложения, учитывая потребности пользователя.
-          <br>
-          <br>
-          Ecodomen зарождался как учебный проект, но быстро вырос и собрал вокруг себя команду начинающих разработчиков (в том числе - тестировщика, дизайнера и проджект-менеджера). К сожалению, для развития проекта рук все равно не хватает, поэтому мы будем рады приветствовать в команде новых участников.
-          <br>
-          <br>
-          <strong>Наш стек технологий:</strong>
-          <ul>
-            <li>Python</li>
-            <li>Django</li>
-            <li>Scrapy</li>
-            <li>Git</li>
-            <li>Телеграм - коммуникация</li>
-          </ul>
-          Мы работаем на волонтерской основе, вкладывая свое свободное время. Если кто-то из участников проекта сталкивается с трудностями при выполнении задачи, остальные всегда готовы помочь.
-          <br>
-          Ecodomen - это проект с открытым исходным кодом (Open Source). Участие в таких проектах не только ценится в сообществе разработчиков, но и может оказаться преимуществом при поиске работы в сфере IT.
+        <div class="text-container">
+          <div class="text-block-1">
+            <h2>Ecodomen - агрегатор регистраторов доменных имен</h2>
+            Многие пользователи интернета не разбираются в тонкостях хостинга и доменов. При попытке создать собственный сайт они часто переплачивают, обращаясь к крупным регистраторам. Мы протягиваем таким людям руку помощи, упрощая процесс поиска и регистрации доменных имён. Наше приложение помогает найти наилучшие предложения, учитывая потребности пользователя.
+          </div>
+          <div class="text-block-2">   
+            <h2>Ecodomen зарождался как учебный проект</h2> 
+            Но быстро вырос и собрал вокруг себя команду начинающих разработчиков (в том числе - тестировщика, дизайнера и проджект-менеджера). К сожалению, для развития проекта рук все равно не хватает, поэтому мы будем рады приветствовать в команде новых участников.
+          </div>
         </div>
-        
+        <div class="text-container-2">
+          <div class="text-block-1">    
+            <h2>Наш стек технологий:</h2>
+            <ul>
+              <li>Python</li>
+              <li>Django</li>
+              <li>Scrapy</li>
+              <li>Git</li>
+              <li>Телеграм - коммуникация</li>
+            </ul>
+          </div>
+          <div class="text-block-2">
+            <h2>Мы работаем на волонтерской основе, вкладывая свое свободное время.</h2> 
+            Если кто-то из участников проекта сталкивается с трудностями при выполнении задачи, остальные всегда готовы помочь.
+            Ecodomen - это проект с открытым исходным кодом (Open Source). Участие в таких проектах не только ценится в сообществе разработчиков, но и может оказаться преимуществом при поиске работы в сфере IT.
+          </div>
+        </div>  
         
     </div>
+{% endblock %}
 
 
 </body>
 </html>
 
 
-<style>
-
-@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');    
-
-.container{
-    position: relative;
-    margin-top: 70px;
-}
-
-/* .background-image {
-  position: absolute;
-  width: 100%;
-  height: 620px;
-  left: 0px;
-  top: 520px;
-  object-fit: cover;
-  filter: grayscale(100%);
-} */
-
-
-.headerone {
-  font-family: 'Mulish';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 48px;
-  line-height: 60px;
-  text-align: center;
-  color: #2D2D2D;
-  margin-top: 30px; 
-}
-
-.text-block-1 {
-  margin-top: 35px;
-  position: relative;
-  width: 1293px;
-  height: 1034px;
-  font-family: 'Mulish';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 36px;
-  line-height: 47px;
-  color: #575757;
-}
-
-</style>

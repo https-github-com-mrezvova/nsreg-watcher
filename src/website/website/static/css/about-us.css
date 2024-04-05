@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Inter');
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.employee-card {
+    width: 218px;
+    height: 330px;
+    text-align: center;
+    margin: 10px;
+    padding: 0px 0 15px 0;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.employee-photo {
+    width: 218px;
+    height: 218px;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.employee-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.employee-name {
+    font-family: 'Mulish', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.job-title {
+    font-family: 'Mulish', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.row-centered {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.row-justified {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#join-gradient {
+    background: linear-gradient(124.67deg, #14D563 2.86%, #FFCB21 98.12%);
+    width: 250px;
+    height: 250px;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+#join-card {
+    width: 250px;
+    height: 250px;
+    text-align: center;
+    margin: 10px;
+    padding: 0px 0 15px 0;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+#join-gradient span {
+    display: flex;
+    height: 250px;
+    align-items: center;
+    justify-content: center;
+    font-family: Mulish;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #ffffff;
+}
+
+#page-title {
+    display: flex;
+    height: 165px;
+    justify-content: center;
+    align-items: center;
+}
+
+#join-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.employee-link {
+    color: #000;
+    text-decoration: none;
+}
+
+.employee-link:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+@media only screen and (max-width: 767px) {
+    body {
+        margin-top: 20px;
+    }
+    .row-justified {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .employee-card {
+        display: flex;
+        justify-content: space-between;
+        width: 360px;
+        height: 120px;
+        text-align: center;
+        margin: 10px;
+        padding: 15px 20px 15px 20px;
+        background-color: #ffffff;
+        border-radius: 10px;
+    }
+
+    .employee-photo {
+        width: 120px;
+        height: 120px;
+        border-top-left-radius: 50%;
+        border-bottom-left-radius: 50%;
+        border-bottom-right-radius: 50%;
+        overflow: hidden;
+        margin-bottom: 15px;
+    }
+
+    .card-text {
+        display: flex;
+        flex-direction: column;
+        width: 240px;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    #join-card {
+        display: flex;
+        justify-content: end;
+        width: 360px;
+        height: 120px;
+        text-align: center;
+        margin: 10px;
+        padding: 0px 0 15px 0;
+        background-color: #ffffff;
+        border-radius: 10px;
+    }
+
+    #join-gradient {
+        background: linear-gradient(124.67deg, #14D563 2.86%, #FFCB21 98.12%);
+        width: 120px;
+        height: 120px;
+        border-top-left-radius: 50%;
+        border-bottom-left-radius: 50%;
+        border-bottom-right-radius: 50%;
+        overflow: hidden;
+        margin-bottom: 15px;
+    }
+
+    #join-gradient span {
+        display: flex;
+        height: 120px;
+        align-items: center;
+        justify-content: center;
+        font-family: Mulish;
+        font-size: 14px;
+        font-weight: 900;
+        line-height: 30px;
+        letter-spacing: 0em;
+        text-align: center;
+        color: #ffffff;
+    }
+
+    #page-title {
+        display: flex;
+        height: 80px;
+        font-size: 24px;
+        justify-content: center;
+        align-items: end;
+    }
+}

@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');    
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.text-container{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    min-height: 480px;
+    padding: 35px;
+}
+.text-container-2{    
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    min-height: 480px;
+    color: white;
+    background-image: url('../img/team.png');
+    padding: 35px;
+}
+
+.text-container-2 h2 {
+    color: #FFCF23;
+}
+
+
+
+.headerone {
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 60px;
+  text-align: center;
+  color: #2D2D2D;
+  margin-top: 120px; 
+}
+
+.text-block-1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-family: 'Mulish', sans-serif;
+  font-size: 18px;
+}
+
+.text-block-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  font-family: 'Mulish', sans-serif;
+  font-size: 18px;
+}
+
+h2 {
+  color: #14D563; 
+}
+
+@media screen and (max-width: 1199px) {
+
+  .headerone {
+    margin-top: 60px;
+  }
+
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 500px;
+  }
+  .text-container-2 {
+    flex-direction: column;
+    min-height: 500px;
+
+  }
+
+  .text-block-1 {
+    margin-bottom: 20px; 
+  }
+  .text-block-2 {
+    margin-bottom: 20px; 
+  }
+}
+
+@media screen and (min-width: 1200px) {
+
+  .text-container {
+    justify-content: space-between;
+  }
+  .text-container-2 {
+    justify-content: space-between;
+  }
+
+  .text-block-1 {
+    width: calc(50% - 10px); 
+    padding: 10px; 
+    box-sizing: border-box;
+  }
+  .text-block-2 {
+    width: calc(50% - 10px); 
+    padding: 10px; 
+    box-sizing: border-box;
+  }
+}

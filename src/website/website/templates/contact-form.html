@@ -1,0 +1,54 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/contact.css' %}" > 
+<!--- Форма для связи --->
+<div class="modal-overlay">
+  <div class="modal-container">
+    <form action="{% url 'about-us' %}" method="post">
+        {% csrf_token %}
+        <div class="feedback-form">
+            <div class="form-header">ОБРАТНАЯ СВЯЗЬ</div>
+
+            <div class="form-group">
+                {% comment %} <input type="text" placeholder="Ваше Имя" name="name"> {% endcomment %}
+                {{contact_form.name}}
+            </div>
+
+            <div class="form-group">
+                {% comment %} <input type="text" placeholder="Телефон или email" name="contact"> {% endcomment %}
+                {{contact_form.contact}}
+            </div>
+
+            <div class="form-group">
+                {% comment %} <input type="text" placeholder="Специальность" name="speciality"> {% endcomment %}
+                {{contact_form.speciality}}
+            </div>
+
+            <div class="form-group">
+                {% comment %} <input type="text" placeholder="Сообщение" name="message"> {% endcomment %}
+                {{contact_form.message}}
+            </div>
+
+            <button type="submit" class="submit-btn">Отправить</button>
+        </div>
+    </form>
+    <button class="close-btn">
+      <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 24.7414L24.6672 4.00017" stroke="#2D2D2D" stroke-width="7" stroke-linecap="round"/>
+        <path d="M25 25.0002L4.33281 4.25893" stroke="#2D2D2D" stroke-width="7" stroke-linecap="round"/>
+      </svg>
+    </button>  
+  </div>
+</div>
+
+<script>
+  const modalBtn = document.querySelector(".modal-btn");
+  const modal = document.querySelector(".modal-overlay");
+  const closeBtn = document.querySelector(".close-btn");
+
+  modalBtn.addEventListener("click", function () {
+    modal.classList.add("open-modal");
+  });
+  closeBtn.addEventListener("click", function () {
+    modal.classList.remove("open-modal");
+  });
+</script>

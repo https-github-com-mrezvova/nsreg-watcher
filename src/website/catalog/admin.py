@@ -1,9 +1,17 @@
 from django.contrib import admin
 from django.contrib.auth.models import User, Group
 
-from .models import Registrator, Price
+from .models import Registrator, Price, TeamMember
 
 admin.site.empty_value_display = "Нет данных"
+
+
+class TeamMemberAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'title', 'contact', 'photo', 'sex')
+    search_fields = ('name', 'title', 'contact', 'sex')
+
+
+admin.site.register(TeamMember, TeamMemberAdmin)
 
 
 class PriceRegistratorInline(admin.TabularInline):

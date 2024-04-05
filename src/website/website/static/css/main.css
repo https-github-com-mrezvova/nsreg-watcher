@@ -2,14 +2,58 @@
 @import url('https://fonts.googleapis.com/css?family=Inter');
 
 body {
-  padding-top: 5rem;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
 }
 
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: rgba(20, 213, 99, 0.5); 
+  color: white;
+  border: none;
+  border-radius: 20%; 
+  padding: 10px;
+  cursor: pointer;
+  display: none; 
+}
+
+.scroll-to-top-btn i {
+  font-size: 1.5rem; 
+}
+
+.scroll-to-top-btn:hover {
+  background-color: #14D563; 
+  border: none;
+}
+
+::-webkit-scrollbar {
+  width: 15px; 
+}
+::-webkit-scrollbar-track { 
+  background: #f1f1f1; 
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #14D563 0%, #FFCF23 100%); 
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+
 .navbar {
-  margin: auto;
+  z-index: 5;
+  position: relative;
+  display: flex;
+  /* margin: auto; */
+  justify-content: space-between;
+  align-items: center;
   background-color: #FFFFFF !important;
-  height: 115px;
-  width: 90vw;
+  height: 120px;
+  width: 100vw;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -26,12 +70,19 @@ body {
   line-height: 30px;
 }
 
+.projbuttons {
+  position: absolute;
+  right: 30px;
+  /* top: 30px; */
+  display: flex;
+  flex-wrap: nowrap;
+}
 
 .projbutton {
-  position: relative;
-  width: 88px;
+  /* position: relative; */
+  width: auto;
   height: 30px;
-  margin-right: 5vw;
+  margin-right: 3vw;
   font-family: 'Mulish';
   font-style: normal;
   font-weight: 700;
@@ -40,9 +91,14 @@ body {
   color: #2D2D2D;
 }
 
+.navbar-toggler,
+.nav-item{
+  display: none;
+}
 .navbar-brand {
-  position: relative;
-  margin-left: 5vw;
+  position: absolute;
+  left: 5vw;
+  /* top: 10px; */
   background-image: url('../ecoIcons/Логотип\ \(light\).svg');
   background-repeat: no-repeat;
   background-position: center;
@@ -52,6 +108,11 @@ body {
 .starter-template {
   /* padding: 3rem 1.5rem; */
   text-align: center;
+}
+
+.container {
+  /* margin-top: 100px; */
+  width: 100vw;
 }
 
 .cards {
@@ -82,6 +143,7 @@ h5 a {
 }
 
 .card-text-title {
+  margin-top: 15px;
   font-family: 'Mulish';
   font-style: normal;
   font-weight: 700;
@@ -98,9 +160,9 @@ h5 a {
 }
 
 .card-link {
-  margin-right: 20px;
+  margin-right: 1vw;
   display: inline-block;
-  padding: 10px 20px;
+  padding: 20px 20px;
   margin-top: 15px;
   background: #FFFFFF;
   border: 1px solid #C1C1C1;
@@ -124,7 +186,8 @@ h5 a {
 }
 
 .card-link:hover {
-  background: #EFEFEF;
+  background-color: #14D563;
+  color: #2D2D2D;
 }
 
 .card-container {
@@ -150,18 +213,17 @@ h5 a {
 
 /* SEARCH FORM */
 .wrapper {
-  margin-top: 100px !important;
+  margin-top: 20px !important;
   margin-bottom: 60px;
   display: flex !important;
   width: 90vw;
   height: 150px;
   margin: 10px auto;
-  border: 1px solid #E5E5E9;
-  border-radius: 10px;
+  border: 2px solid #E5E5E9;
   padding: 20px;
   align-items: center;
   border-image: linear-gradient(86.99deg, #14D563 7.59%, #FFCF23 100.26%) 1;
-  border-radius: 5px;
+  border-radius: 10px !important;
   border-image-slice: 1;
   border-style: solid;
 }
@@ -180,7 +242,8 @@ h5 a {
 }
 
 .forma input[type="text"] {
-  width: 20vw;
+  margin-top: 4px;
+  width: 35vw;
   height: 70px;
   margin-left: 5px;
   box-sizing: border-box;
@@ -215,9 +278,13 @@ h5 a {
   flex: 3;
 }
 
+.col-md-2 {
+  width: 100px;
+}
+
 .btn {
   width: 166px;
-  height: 55px;
+  height: 70px;
   font-family: 'Mulish';
   font-style: normal;
   font-weight: 500;
@@ -238,8 +305,10 @@ h5 a {
 
 .forma select {
   height: 70px;
-  /* padding: 11px; */
-  background: #FAFAFA;
+  width: 15vw;
+  margin-top: 5px;
+  padding: 11px;
+  background: #f2f2f2;
   border: 1px solid #C1C1C1;
   border-radius: 10px;
   box-sizing: border-box;
@@ -252,15 +321,19 @@ h5 a {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  margin-right: 45px;
+  margin-right: 15px;
 }
 
 #search-label {
   display: flex;
   align-items: center;
-  margin-bottom: 0;
+  margin-top: 15px;
 }
 
+label,
+  #search-label {
+    display: none;
+  }
 .btn {
   display: flex;
   align-items: center;
@@ -279,88 +352,123 @@ h5 a {
   justify-content: center;
 }
 
-@media only screen and (max-width: 763px) {
+@media only screen and (max-width: 767px) {
   .navbar {
-    width: 380px;
-    height: auto;
+    position: fixed;
+    width: 100%;
+    height: 60px;
   }
 
   .navbar-brand {
-    position: relative;
-    margin-left: -60px;
+    /* position: absolute; */
+    left: -40px;
+    top: -5px;
     background-image: url('../ecoIcons/Логотип\ \(light\).svg');
     transform: scale(0.5);
     background-repeat: no-repeat;
     background-position: center left;
   }
 
-  .navbar .projbutton a {
+  .projbuttons {
+    /* position: absolute; */
+    right: 5vw;
+    top: 15px;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  .projbutton {
+    display: none;
+  }
+.navbar-collapse {
+  display: none;
+  margin-top: 60px;
+  animation: slideDown 0.5s forwards;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+  .navbar-toggler {
+      display: block;
+      background-image: url('../icons/burger2.svg');
+      background-repeat: no-repeat;
+      margin-left: auto;
+      margin-top: -5px;
+    }
+
+  .navbar-nav {
+    list-style-type: none;
+    padding: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    
+  }
+
+  .navbar-nav .nav-item {
+    display: inline-block;
+    margin-left: auto;
     text-decoration: none;
     background-color: transparent;
     border: none;
     cursor: pointer;
-    color: #2D2D2D;
+    color: #2D2D2D !important;
     font-family: 'Mulish';
     font-style: normal;
     font-weight: 700;
     font-size: 18px;
-    line-height: 30px;
+    line-height: 50px; 
   }
 
-  .projbutton {
-    position: relative;
-    width: 88px;
-    height: 30px;
-    margin-right: -25px;
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 30px;
-    color: #2D2D2D;
+  .navbar-nav .nav-item a {
+    color: #14D563;
   }
   .row {
-    width: 380px;
+    width: 100%;
     margin-right: auto;
     margin-left: auto;
   }
 
   .card {
-    width: 380px;
-    height: 190px;
+    width: 90vw;
+    height: 310px;
     /* margin: 2px 10px; */
   }
 
   .card-body {
-    /* padding: 10px; */
     padding-left: 0px;
     padding-top: 0px;
     padding-right: 0px;
   }
 
   .info-column {
-    padding: 0;
+    padding-top: 35px;
   }
 
   .card-title {
     display: flex;
-    justify-content: center;
-    width: 322px;
-    margin: 0 auto;
+    justify-content: flex-start;
+    margin: 0 0 0 4vw;
     font-family: 'Mulish';
     font-style: normal;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 30px;
     color: #2D2D2D;
   }
 
   .card-text-value {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start ;
   }
 
   .card-text-title {
+    margin-top: 0;
     color: rgba(45, 45, 45, 0.70);
     font-family: Inter;
     font-size: 15px;
@@ -372,6 +480,7 @@ h5 a {
   }
 
   .parse-date {
+    display: none;
     color: #2D2D2D;
     font-family: Inter;
     font-size: 12px;
@@ -379,6 +488,7 @@ h5 a {
     font-weight: 400;
     line-height: 14px;
     margin-bottom: 4px;
+    margin-left: 4vw;
   }
 
   .city {
@@ -387,9 +497,11 @@ h5 a {
 
   .prices {
     display: flex;
-    width: 280px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 85vw;
     justify-content: center;
-    padding: 0 20px;
+    margin-top: 35px;
   }
 
   .price {
@@ -403,9 +515,12 @@ h5 a {
 
   .price-title {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between  ;
     padding: 2px 6px;
+    align-content: space-between;
   }
 
   .card-link {
@@ -413,20 +528,18 @@ h5 a {
     justify-content: center;
     align-items: center;
     position: relative;
-    padding: 0;
-    margin: 0 auto;
-    margin-left: 95px;
-    width: 200px;
-    height: 40px;
+    margin-left: 7vw;
+    width: 80vw;
+    height: 66px;
   }
 
-  /* SEARCH FORM RESPONSIVE */
   .wrapper {
     display: flex !important;
-    flex-direction: column;
-    width: 380px;
-    height: 120px;
-    margin-top: 20px !important;
+    flex-direction: column-reverse;
+    width: 90vw;
+    height: 195px;
+    margin-top: 70px !important;
+    margin-bottom: 82px;
     margin-left: auto;
     margin-right: auto;
     padding-top: 0;
@@ -434,15 +547,15 @@ h5 a {
 
   .forma {
     display: flex;
-    flex-direction: column-reverse;
-    width: 322px;
+    flex-direction: column;
+    width: 100%;
     margin-top: 17px;
     margin-left: 0px;
   }
 
   .forma input[type="text"] {
-    width: 300px;
-    height: 70px;
+    width: 85vw;
+    height: 68px;
   }
 
   label,
@@ -452,14 +565,18 @@ h5 a {
 
   .selection {
     display: flex;
+    width: auto;
     flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
   }
 
   #id_sort_by {
     padding: auto;
+    padding-left: 5vw;
     margin: 0 3px;
-    height: 40px;
-    width: 134px;
+    height: 68px;
+    width: 48%;
     color: rgba(45, 45, 45, 0.70);
     font-family: Inter;
     font-size: 15px;
@@ -471,9 +588,10 @@ h5 a {
 
   #id_reverse_order {
     margin: 0 3px;
-    height: 40px;
-    width: 116px;
+    height: 68px;
+    width: 48%;
     padding: auto;
+    padding-left: 5vw;
     color: rgba(45, 45, 45, 0.70);
     font-family: Inter;
     font-size: 15px;
@@ -483,19 +601,11 @@ h5 a {
     margin-bottom: 4px;
   }
 
-  #adaptive-button {
-    display: flex;
-    margin: 0 3px;
-    height: 40px;
-    width: 46px;
-    align-items: center;
-    justify-content: center;
-  }
 
   #id_search {
     margin: 0 3px;
-    height: 40px;
-    width: 313px;
+    height: 70px;
+    width: auto;
     padding: auto;
     color: rgba(45, 45, 45, 0.70);
     font-family: Inter;
@@ -503,34 +613,50 @@ h5 a {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    margin-bottom: 4px;
+    margin-bottom: 15px;
   }
-
-  #large-submit {
-    display: none;
+  .btn {
+    width: 90vw;
+    height: 70px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #FFFFFF;
+    background: #14D563;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 25px;
+    margin-left: -20px !important;
+    margin-bottom: -120px;
   }
-
+ 
   .link-inline {
     display: none;
   }
 }
 
-@media only screen and (min-width: 764px) and (max-width: 1300px) {
+@media only screen and (min-width: 768px) and (max-width: 1300px) {
   .navbar {
     margin: auto;
     background-color: #FFFFFF !important;
-    height: 115px;
-    width: 90vw;
+    height: 75px;
+    width: 100vw;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   .navbar-brand {
-    position: relative;
+    position: absolute;
+    left: 0px;
     background-image: url('../ecoIcons/Логотип\ \(light\).svg');
-    transform: scale(0.7);
+    transform: scale(0.6);
     background-repeat: no-repeat;
     background-position: center left;
   }
 
+  
   .navbar .projbutton a {
     text-decoration: none;
     background-color: transparent;
@@ -544,8 +670,16 @@ h5 a {
     line-height: 30px;
   }
 
+  .projbuttons {
+    position: absolute;
+    right: 20px;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
   .projbutton {
     position: relative;
+    margin-right: 2vw;
     width: 88px;
     height: 30px;
     font-family: 'Mulish';
@@ -591,6 +725,7 @@ h5 a {
   }
 
   .card-text-title {
+    margin-top: 0;
     display: flex;
     justify-content: center;
     font-family: 'Mulish';
@@ -611,6 +746,7 @@ h5 a {
 
   .link-inline {
     margin-right: 20px;
+    width: 200px;
     display: inline-block;
     padding: 10px 20px;
     margin-top: 15px;
@@ -662,33 +798,26 @@ h5 a {
 
   .prices {
     display: flex;
+    justify-content: space-between;
   }
 
   .city {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    justify-content: center;
+    display: none;
   }
 
-  .price-title {
-    min-width: 8em;
-  }
 
   .wrapper {
     display: flex !important;
     flex-direction: column;
     width: 90vw;
-    height: 80px;
-    margin-top: 60px !important;
+    height: 115px;
+    margin-top:   20px !important;
     padding-top: 0;
   }
 
   .forma {
     display: flex;
-    flex-direction: row-reverse;
     justify-content: center;
-    width: 748px;
     margin-top: 17px;
     margin-left: 0px;
   }
@@ -711,8 +840,8 @@ h5 a {
   #id_sort_by {
     padding: auto;
     margin: 0 3px;
-    height: 40px;
-    width: 134px;
+    height: 70px;
+    width: 15vw;
     color: rgba(45, 45, 45, 0.70);
     font-family: Inter;
     font-size: 15px;
@@ -724,8 +853,8 @@ h5 a {
 
   #id_reverse_order {
     margin: 0 3px;
-    height: 40px;
-    width: 116px;
+    height: 70px;
+    width: 15vw;
     padding: auto;
     color: rgba(45, 45, 45, 0.70);
     font-family: Inter;
@@ -736,19 +865,27 @@ h5 a {
     margin-bottom: 4px;
   }
 
-  #adaptive-button {
-    display: flex;
-    margin: 0 3px;
-    height: 40px;
-    width: 46px;
-    align-items: center;
-    justify-content: center;
+  .btn {
+    width: 166px;
+    height: 70px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #FFFFFF;
+    background: #14D563;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
   }
 
   #id_search {
     margin: 0 3px;
-    height: 40px;
-    width: 25vw;
+    height: 70px;
+    width: 32vw;
     padding: auto;
     color: rgba(45, 45, 45, 0.70);
     font-family: Inter;
@@ -759,7 +896,5 @@ h5 a {
     margin-bottom: 4px;
   }
 
-  #large-submit {
-    display: none;
-  }
+
 }

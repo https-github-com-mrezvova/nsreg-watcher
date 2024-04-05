@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
+from django.conf import settings
 from catalog import views
 
 urlpatterns = [
@@ -27,4 +29,4 @@ urlpatterns = [
     path('about-us/', views.about, name='about-us'),
     path('__debug__/', include('debug_toolbar.urls')),
     path('project/', views.project_view, name='project'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,34 +1,43 @@
+{% extends 'base.html' %}
 {% load static %}
-<div class="about-section">
-    <h1>О нас</h1>
-    <p>На нашем сайте вы найдете самое выгодное предложение!</p>
-    <p></p>
-  </div>
-  
-  <h2 style="text-align:center">Наша команда</h2>
-  <div class="row">
-    <div class="column">
-      <div class="card">
-        <img src="{% static 'pictures/photo_2019-07-03_20-05-26.jpg' %}" alt="Aleksey" style="width:15%">
-        <div class="container">
-          <h2>Алексей</h2>
-          <p class="title">Разработчик & Помощник о:</p>
-          <p>Организую разработку веб и мобильных приложений повышенной сложности.</p>
-          <a href="https://t.me/arezvov">https://t.me/arezvov</a>
-          <p><button class="button">Contact</button></p>
-        </div>
-      </div>
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/about-us.css' %}" >
+
+<div class="container">
+    <div class="row row-centered">
+      <h1 id="page-title">Наша Команда</h1>
     </div>
-  
-    <div class="column">
-      <div class="card">
-        <img src="{% static 'pictures/photo_2022-02-02_21-56-33.jpg' %}" alt="Maria" style="width:15%">
-        <div class="container">
-          <h2>Мария</h2>
-          <p class="title">Главный разработчик</p>
-          <p>Пока не организую разработку(вроде</p>
-          <p>rezvmaria@gmail.com</p>
-          <p><button class="button">Contact</button></p>
-        </div>
-      </div>
+    <div class="row row-justified">
+        <!-- Team -->
+        {% for member in team_members %}
+        <a href="{{ member.get_contact_url }}" class="employee-link">
+          <div class="col-md-3">
+              <div class="employee-card">
+                  <div class="employee-photo">
+                      <img src="{% get_media_prefix %}{{member.get_avatar}}" alt="{{member.name}}">
+                  </div>
+                  <div class="card-text">
+                    <div class="employee-name">{{member.name}}</div>
+                    <div class="job-title">{{member.title}}</div>
+                  </div>
+              </div>
+          </div>
+        </a>
+        {% endfor %}
+
+        <!-- Join -->
+        <button class="modal-btn" id="join-link">
+          <div class="col-md-3">
+              <div id="join-card">
+                  <div id="join-gradient">
+                      <span>Присоединяйся</span>
+                  </div>
+              </div>
+          </div>
+        </button>
     </div>
+</div>
+
+{% include 'contact-form.html' %}
+
+{% endblock %}
