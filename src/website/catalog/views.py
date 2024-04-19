@@ -1,3 +1,5 @@
+import re
+
 from django.shortcuts import render
 from django.http import HttpResponseNotFound, HttpResponseRedirect
 from django.db.models import Q
@@ -17,6 +19,15 @@ SORT_FIELD_NAMES = {
 }
 
 
+def is_english(text):
+    return re.match(r'^[a-zA-Z0-9\s]+$', text) is not None
+
+
+def extract_name_from_quotes(name):
+    match = re.search(r'«(.*?)»', name)
+    return match.group(1) if match else None
+
+
 def registrator_list(request):
     if request.method == "POST":
         form = CompaniesSortForm(request.POST)
@@ -32,10 +43,17 @@ def registrator_list(request):
         search = ''
 
     if search:
-        companies = Price.objects.filter(
-            Q(registrator__name__icontains=search) |
-            Q(registrator__website__icontains=search)
+        if is_english(search):
+            search_by_name_only = False
+            companies = Price.objects.filter(
+                Q(registrator__website__icontains=search)
             )
+        else:
+            search_by_name_only = True
+            companies = Price.objects.filter(
+                Q(registrator__name__icontains=search)
+            )
+
     else:
         companies = Price.objects.filter()
 
@@ -53,7 +71,16 @@ def registrator_list(request):
 
     companies = Price.objects.filter(id__in=companies).order_by(*sort_by_lst)
 
-    return render(request, 'registrator-list.html', {'companies': companies, 'form': form})
+    if search_by_name_only:
+        sorted_companies_lambda = sorted(
+            filter(lambda x: extract_name_from_quotes(x.registrator.name).lower().startswith(search.lower()),
+                   companies),
+            key=lambda x: extract_name_from_quotes(x.registrator.name)
+        )
+    else:
+        sorted_companies_lambda = companies
+
+    return render(request, 'registrator-list.html', {'companies': sorted_companies_lambda, 'form': form})
 
 
 def registrator_details(request, id):
