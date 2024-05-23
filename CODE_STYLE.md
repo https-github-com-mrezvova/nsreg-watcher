@@ -46,7 +46,7 @@ pip install black
 >```
 
 # Оформление кода и документации
-### Ознакомится с хорошим, подробным гайдом: [Google Python Style Guide](https://github.com/google/styleguide/blob/gh-pages/pyguide.md#google-python-style-guide)
+### Ознакомиться с хорошим, подробным гайдом: [Google Python Style Guide](https://github.com/google/styleguide/blob/gh-pages/pyguide.md#google-python-style-guide)
 
 ### Использовать единый стиль и язык оформления документации и комментариев
 
