@@ -11,7 +11,7 @@
 [![Postgres version](https://img.shields.io/badge/PSQL-16-blue?logo=postgresql)](https://www.postgresql.org/)
 [![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?logo=nginx&logoColor=white)](https://nginx.org/)
 [![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?logo=redis&logoColor=white)](https://redis.io/)
-[![Telegram](https://img.shields.io/badge/telegram-blue.svg?logo=telegram&logoColor=white)](https://redis.io/)
+[![Telegram](https://img.shields.io/badge/telegram-blue.svg?logo=telegram&logoColor=white)](https://core.telegram.org/bots/api)
 
 # Установка и запуск
 
