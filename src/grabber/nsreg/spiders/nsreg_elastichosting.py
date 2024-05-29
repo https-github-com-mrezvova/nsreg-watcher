@@ -6,7 +6,7 @@ from ..base_site_spider import BaseSpiderComponent
 
 class NsregElastichostingSpider(scrapy.Spider):
     name = "nsreg_elastichosting"
-    start_urls = ["https://my.elastichosting.ru/domain/pricing"]
+    start_urls = ["https://my.elastichosting.ru/domain/pricing?currency=3"]
     allowed_domains = ("elastichosting.ru")
     site_names = ("ООО «ЭластикХостинг»",)
 
@@ -20,9 +20,9 @@ class NsregElastichostingSpider(scrapy.Spider):
             site_names=self.site_names,
             regex=r"₽\s*([0-9]+\.[0-9]+)\s*RUB",
             path={
-                'price_reg': '//tr[.//strong[.=".ru"]]/td[contains(.//span, "New Price")]/text()[preceding-sibling::span[contains(@class, "tld-label")]]',
-                'price_prolong': '//tr[.//strong[.=".ru"]]/td[contains(.//span, "Renewal")]/text()[preceding-sibling::span[contains(@class, "tld-label")]]',
-                'price_change': '//tr[.//strong[.=".ru"]]/td[contains(.//span, "Transfer")]/text()[preceding-sibling::span[contains(@class, "tld-label")]]'
+                'price_reg': '//tr[.//strong[.=".ru"]]/td[contains(.//span, "Новая цена")]/text()[preceding-sibling::span[contains(@class, "tld-label")]]',
+                'price_prolong': '//tr[.//strong[.=".ru"]]/td[contains(.//span, "Продление")]/text()[preceding-sibling::span[contains(@class, "tld-label")]]',
+                'price_change': '//tr[.//strong[.=".ru"]]/td[contains(.//span, "Передача")]/text()[preceding-sibling::span[contains(@class, "tld-label")]]'
             }
         )
 
