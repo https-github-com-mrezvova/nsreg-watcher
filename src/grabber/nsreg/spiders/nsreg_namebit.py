@@ -9,13 +9,16 @@ from ..base_site_spider import BaseSpiderComponent
 
 class NsregNamebitSpider(scrapy.Spider):
     name = 'nsreg_namebit'
-    allowed_domains = ["namebit.ru"]
-    start_urls = ["https://namebit.ru/#features-2"]
-    site_names = ("ООО «НЕЙМБИТ»",)
+    allowed_domains = ['namebit.ru']
+    start_urls = ['https://namebit.ru/#features-2']
+    site_names = ('ООО «НЕЙМБИТ»',)
     custom_settings = {
-        'DOWNLOAD_DELAY': 3,
-        'RANDOMIZE_DOWNLOAD_DELAY': False
-        }
+        'CONCURRENT_ITEMS': 0,
+        'DOWNLOAD_DELAY': 1.25,
+        'RANDOMIZE_DOWNLOAD_DELAY': False,
+        'RETRY_TIMES': 3,
+        'USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64; rv:7.0.1) Gecko/20100101 Firefox/7.7'
+    }
 
     # Конструктор класса
     def __init__(self, *args, **kwargs):

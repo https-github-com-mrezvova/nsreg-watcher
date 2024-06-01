@@ -22,14 +22,6 @@ class Registrator(models.Model):
         app_label = 'catalog'
 
 
-# class Domain(models.Model):
-#    id = models.BigAutoField(primary_key=True)
-#    name = models.CharField(max_length=255)
-#
-#    def __str__(self):
-#        return self.name
-
-
 class ParseHistory(models.Model):
     id = models.BigAutoField(primary_key=True)
     date = models.DateTimeField("Дата парсинга", auto_now=True)

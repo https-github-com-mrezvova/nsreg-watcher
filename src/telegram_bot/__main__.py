@@ -11,7 +11,7 @@ current_directory = os.getcwd()
 TOKEN = os.environ["BOT_TOKEN"]
 ERROR_LOGS_PATH = "logs/grabber_errors.log"
 CHAT_ID = os.environ["CHAT_ID"]
-TOPIC_SUPPORT_ID = int(os.environ["TOPIC_SUPPORT_ID"]) 
+TOPIC_SUPPORT_ID = int(os.environ["TOPIC_SUPPORT_ID"])
 
 if current_directory == '/home/ecodomen/ecodomen-dev/src/telegram_bot/':
     SPIDERS_SCRIPT_PATH = "compose/scrapy/scrapy-dev.sh"
