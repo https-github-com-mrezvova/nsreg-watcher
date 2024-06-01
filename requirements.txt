@@ -1,5 +1,5 @@
 scrapy==2.11.0
-psycopg2-binary==2.9.6
+psycopg2-binary==2.9.9
 django==4.1.7
 django-debug-toolbar==4.0.0
 aiogram==3.0.0b8
