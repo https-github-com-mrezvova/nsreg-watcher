@@ -6,9 +6,9 @@ fi
 
 source env/bin/activate
 
-ERROR_LOG="$(cd "$(dirname "logs/grabber_errors.log")"; pwd)/$(basename "logs/grabber_errors.log")"
+DATE=$(date +"%Y-%m-%d")
+ERROR_LOG="$(cd "$(dirname "logs/${DATE}_grabber_errors.log")"; pwd)/$(basename "logs/${DATE}_grabber_errors.log")"
 LOG_LEVEL=ERROR
-DATE=$(date +”%d-%b-%Y_%H:%M”)
 
 echo "truncating error file:  $ERROR_LOG"
 echo -n '' > $ERROR_LOG
