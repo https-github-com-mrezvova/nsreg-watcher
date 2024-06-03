@@ -6,7 +6,7 @@
 
 [![License MIT](https://img.shields.io/badge/licence-MIT-%3A%2F%2F)](https://opensource.org/license/mit/)
 [![Code style black](https://img.shields.io/badge/code%20style-black-black)](https://github.com/psf/black)
-[![Python versions](https://img.shields.io/badge/python-_3.10_|_3.11_|_3.12-blue)](https://www.python.org/)
+[![Python versions](https://img.shields.io/badge/python-_3.10_|_3.11_-blue)](https://www.python.org/)
 [![Django versions](https://img.shields.io/badge/django-4.1-blue?logo=django)](https://www.djangoproject.com/)
 [![Postgres version](https://img.shields.io/badge/PSQL-14_|_15_|_16-blue?logo=postgresql)](https://www.postgresql.org/)
 [![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?logo=nginx&logoColor=white)](https://nginx.org/)
