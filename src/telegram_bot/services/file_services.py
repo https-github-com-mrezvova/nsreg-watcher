@@ -2,7 +2,6 @@ import logging
 import os
 from datetime import datetime, timedelta
 
-import aiofiles
 from aiogram import Bot
 from aiogram.types import FSInputFile
 
