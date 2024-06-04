@@ -53,7 +53,7 @@ async def test_read_log_file(log_files_service, mock_bot, mock_config):
         log_files_service._log_file = temp_file.name
         mock_bot.send_message = AsyncMock()
 
-        await log_files_service._read_log_file()
+        await log_files_service._check_log_file_size()
         assert log_files_service._log_empty is True
 
 
@@ -65,7 +65,7 @@ async def test_read_log_file_non_empty(log_files_service, mock_bot, mock_config)
         log_files_service._log_file = temp_file.name
         mock_bot.send_message = AsyncMock()
 
-        await log_files_service._read_log_file()
+        await log_files_service._check_log_file_size()
         assert log_files_service._log_empty is False
 
 

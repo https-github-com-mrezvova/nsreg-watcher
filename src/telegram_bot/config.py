@@ -22,7 +22,7 @@ class BotConfig:
     lod_max_age: int = 5
 
 
-def get_env_value(name: str):
+def get_env_value(name: str) -> str:
     value = os.getenv(name)
     if not value:
         msg = f"Environment variable '{name}' not set"

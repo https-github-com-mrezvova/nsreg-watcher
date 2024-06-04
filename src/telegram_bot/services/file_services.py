@@ -37,7 +37,7 @@ class LogFilesService:
             return
         self._log_file = path
 
-    async def _read_log_file(self) -> None:
+    async def _check_log_file_size(self) -> None:
         if os.path.getsize(self._log_file) > 0:
             self._log_empty = False
             return
@@ -68,7 +68,7 @@ class LogFilesService:
                 text=str(err),
             )
 
-    async def _delete_old_log_files(self):
+    async def _delete_old_log_files(self) -> None:
         current_date = datetime.now()
         for file in os.listdir(self._config.log_path):
             file_path = os.path.join(self._config.log_path, file)
@@ -85,7 +85,7 @@ class LogFilesService:
     async def grabber_log_processor(self) -> None:
         await self._get_today_grabber_log_file()
         if self._log_file:
-            await self._read_log_file()
+            await self._check_log_file_size()
         if not self._log_empty:
             await self._send_log_file()
         if self._log_has_been_sent:
