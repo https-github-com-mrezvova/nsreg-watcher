@@ -32,7 +32,7 @@ async def test_get_today_grabber_log_file(
 ):
     mock_bot.send_message = AsyncMock()
     with patch("os.path.exists", return_value=True):
-        await log_files_service._get_today_grabber_log_file()
+        await log_files_service._set_today_log_file_path()
 
     assert log_files_service._log_file is not None
 
@@ -43,7 +43,7 @@ async def test_get_today_grabber_log_file_none_exist(
 ):
     mock_bot.send_message = AsyncMock()
 
-    await log_files_service._get_today_grabber_log_file()
+    await log_files_service._set_today_log_file_path()
     assert log_files_service._log_file is None
 
 

@@ -18,12 +18,12 @@ class LogFilesService:
         self._log_empty = True
         self._log_has_been_sent = False
 
-    async def _get_today_grabber_log_file(self) -> None:
+    async def _set_today_log_file_path(self) -> None:
         today_log_file_name = (
             datetime.now().strftime("%Y-%m-%d") + self._config.log_file_postfix
         )
-        path = os.path.join(self._config.log_path, today_log_file_name)
-        if not os.path.exists(path):
+        file_path = os.path.join(self._config.log_path, today_log_file_name)
+        if not os.path.exists(file_path):
             msg = (
                 f"Log file '{today_log_file_name}' not found."
                 f"\nCheck if the parser is working properly."
@@ -35,7 +35,7 @@ class LogFilesService:
                 text=msg,
             )
             return
-        self._log_file = path
+        self._log_file = file_path
 
     async def _check_log_file_size(self) -> None:
         if os.path.getsize(self._log_file) > 0:
@@ -51,12 +51,11 @@ class LogFilesService:
 
     async def _send_log_file(self) -> None:
         try:
-            msg = "Log file."
             await self._bot.send_document(
                 chat_id=self._config.chat_id,
                 message_thread_id=int(self._config.topic_id),
                 document=FSInputFile(self._log_file),
-                caption=msg,
+                caption="Log file",
             )
             logger.info("Log file sent.")
             self._log_has_been_sent = True
@@ -77,13 +76,12 @@ class LogFilesService:
                     os.stat(file_path).st_ctime
                 )
                 age = current_date - creation_date
-                msg = f"Deleted old log file '{file_path}'"
                 if age > timedelta(days=self._config.lod_max_age):
                     os.remove(file_path)
-                    logger.debug(msg)
+                    logger.debug(f"Deleted old log file '{file_path}'")
 
     async def grabber_log_processor(self) -> None:
-        await self._get_today_grabber_log_file()
+        await self._set_today_log_file_path()
         if self._log_file:
             await self._check_log_file_size()
         if not self._log_empty:
