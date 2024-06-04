@@ -27,7 +27,7 @@ def log_files_service(mock_bot, mock_config):
 
 
 @pytest.mark.asyncio
-async def test_get_today_grabber_log_file(
+async def test_set_today_log_file_path(
     log_files_service, mock_bot, mock_config, mock_os
 ):
     mock_bot.send_message = AsyncMock()
@@ -38,7 +38,7 @@ async def test_get_today_grabber_log_file(
 
 
 @pytest.mark.asyncio
-async def test_get_today_grabber_log_file_none_exist(
+async def test_set_today_log_file_path_non_exist(
     log_files_service, mock_bot, mock_config, mock_os
 ):
     mock_bot.send_message = AsyncMock()
@@ -48,7 +48,7 @@ async def test_get_today_grabber_log_file_none_exist(
 
 
 @pytest.mark.asyncio
-async def test_read_log_file(log_files_service, mock_bot, mock_config):
+async def test_check_log_file_size(log_files_service, mock_bot, mock_config):
     with tempfile.NamedTemporaryFile() as temp_file:
         log_files_service._log_file = temp_file.name
         mock_bot.send_message = AsyncMock()
@@ -58,7 +58,9 @@ async def test_read_log_file(log_files_service, mock_bot, mock_config):
 
 
 @pytest.mark.asyncio
-async def test_read_log_file_non_empty(log_files_service, mock_bot, mock_config):
+async def test_check_log_file_size_non_empty(
+    log_files_service, mock_bot, mock_config
+):
     with tempfile.NamedTemporaryFile() as temp_file:
         temp_file.write(b"Some content")
         temp_file.flush()
