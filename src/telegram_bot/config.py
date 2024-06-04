@@ -19,7 +19,7 @@ class BotConfig:
     #  с настройками
     log_path: str = "logs/"
     log_file_postfix: str = "_grabber_errors.log"
-    lod_max_age: int = 0
+    lod_max_age: int = 5
 
 
 def get_env_value(name: str):

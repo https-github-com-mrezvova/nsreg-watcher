@@ -39,9 +39,7 @@ class LogFilesService:
         self._log_file = path
 
     async def _read_log_file(self) -> None:
-        async with aiofiles.open(self._log_file, "rb") as file:
-            lines = await file.read()
-        if lines:
+        if os.path.getsize(self._log_file) > 0:
             self._log_empty = False
             return
         msg = "Log file is empty."
