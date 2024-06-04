@@ -43,6 +43,6 @@ def test_load_bot_config():
 
 
 @patch.dict("os.environ")
-def test_load_bot_config_missing_topic_id():
+def test_load_bot_config_non_env_var():
     with pytest.raises(KeyError):
         load_bot_config()
