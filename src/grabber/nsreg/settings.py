@@ -13,9 +13,9 @@
 import os
 import time
 from pathlib import Path
-from dotenv import load_dotenv
 
-load_dotenv()
+from injector import load_django_settings
+
 os.environ["TZ"] = "UTC"
 time.tzset()
 
@@ -23,11 +23,12 @@ time.tzset()
 GRABBER_DIR = Path(__file__).resolve().parent.parent
 PROJECT_DIR = GRABBER_DIR.parent.parent
 
+load_django_settings(PROJECT_DIR)
 
-BOT_NAME = 'nsreg'
+BOT_NAME = "nsreg"
 
-SPIDER_MODULES = ['nsreg.spiders']
-NEWSPIDER_MODULE = 'nsreg.spiders'
+SPIDER_MODULES = ["nsreg.spiders"]
+NEWSPIDER_MODULE = "nsreg.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -80,7 +81,7 @@ DOWNLOAD_DELAY = 0.25
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'nsreg.pipelines.NsregPipeline': 300,
+    "nsreg.pipelines.NsregPipeline": 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -105,26 +106,7 @@ ITEM_PIPELINES = {
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 # Set settings whose default value is deprecated to a future-proof value
-REQUEST_FINGERPRINTER_IMPLEMENTATION = '2.7'
-TWISTED_REACTOR = 'twisted.internet.asyncioreactor.AsyncioSelectorReactor'
+REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
+TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 
-USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
-
-
-# DJANGO ORM SETTINGS
-DATABASES = {
-        'default': {
-            "ENGINE": "django.db.backends.postgresql",
-            "HOST": os.environ['HOSTNAME_DB'],
-            "NAME": os.environ['DATABASE_NAME'],
-            "USER": os.environ['USERNAME_DB'],
-            "PASSWORD": os.environ['PASSWORD_DB'],
-            "PORT": os.environ['PORT_DB'],
-        }
-}
-INSTALLED_APP = "catalog",
-
-DEFAULT_SETTINGS = {
-    "DATABASES": DATABASES,
-    "INSTALLED_APP": INSTALLED_APP,
-}
+USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"

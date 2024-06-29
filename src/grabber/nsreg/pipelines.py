@@ -5,17 +5,20 @@
 
 
 # useful for handling different item types with a single interface
-from .models import ParseHistory, Price, Registrator
+from catalog.models import ParseHistory, Price, Registrator
 
 
 class NsregPipeline:
 
     def process_item(self, item, spider):
-        price = item.get('price', {
-            'price_reg': None,
-            'price_prolong': None,
-            'price_change': None,
-        })
+        price = item.get(
+            "price",
+            {
+                "price_reg": None,
+                "price_prolong": None,
+                "price_change": None,
+            },
+        )
 
         Price.objects.create(
             price_reg=price["price_reg"],
@@ -30,4 +33,4 @@ class NsregPipeline:
         return item
 
     def close_spider(self, spider):
-        ...
+        pass
