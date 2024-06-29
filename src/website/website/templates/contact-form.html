@@ -6,26 +6,22 @@
     <form action="{% url 'about-us' %}" method="post">
         {% csrf_token %}
         <div class="feedback-form">
-            <div class="form-header">ОБРАТНАЯ СВЯЗЬ</div>
+            <div class="form-header">ПРИСОЕДИНИТЬСЯ</div>
 
             <div class="form-group">
-                {% comment %} <input type="text" placeholder="Ваше Имя" name="name"> {% endcomment %}
-                {{contact_form.name}}
+                {{ contact_form.name }}
             </div>
 
             <div class="form-group">
-                {% comment %} <input type="text" placeholder="Телефон или email" name="contact"> {% endcomment %}
-                {{contact_form.contact}}
+                {{ contact_form.contact }}
             </div>
 
             <div class="form-group">
-                {% comment %} <input type="text" placeholder="Специальность" name="speciality"> {% endcomment %}
-                {{contact_form.speciality}}
+                {{ contact_form.speciality }}
             </div>
 
             <div class="form-group">
-                {% comment %} <input type="text" placeholder="Сообщение" name="message"> {% endcomment %}
-                {{contact_form.message}}
+                {{ contact_form.message }}
             </div>
 
             <button type="submit" class="submit-btn">Отправить</button>

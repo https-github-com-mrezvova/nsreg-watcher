@@ -9,7 +9,7 @@
     place-items: center;
     transition: all 0.3s linear;
     visibility: hidden;
-    z-index: -10;
+    z-index: 10;
 }
 
 .modal-btn {
@@ -22,7 +22,7 @@
 /* OPEN/CLOSE MODAL */
 .open-modal {
     visibility: visible;
-    z-index: 10;
+    z-index: 20;
 }
 
 .modal-container {
@@ -120,51 +120,19 @@
 
 @media only screen and (max-width: 768px) {
     .modal-container {
-        width: 748px;
+        width: 480px;
     }
 
     .feedback-form {
-        width: 600px;
+        width: 400px;
     }
 
     .form-group input {
-        width: 600px;
+        width: 400px;
     }
 
     .submit-btn {
-        margin-left: 380px;
+        margin-left: 20%;
     }
 }
 
-@media only screen and (max-width: 360px) {
-    .modal-container {
-        width: 360px;
-        height: 500px;
-    }
-
-    .feedback-form {
-        width: 360px;
-    }
-
-    .form-group {
-        height: 50px;
-    }
-
-    .form-group input {
-        width: 320px;
-    }
-
-    .submit-btn {
-        margin: auto;
-    }
-
-    .close-btn {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-    }
-
-    .form-header {
-        font-size: 20px;
-    }
-}
