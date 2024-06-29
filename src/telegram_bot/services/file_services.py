@@ -28,7 +28,7 @@ class LogFilesService:
                 f"Log file '{today_log_file_name}' not found."
                 f"\nCheck if the parser is working properly."
             )
-            logger.error(msg)
+            logger.warning(msg)
             await self._bot.send_message(
                 chat_id=self._config.chat_id,
                 message_thread_id=int(self._config.topic_id),

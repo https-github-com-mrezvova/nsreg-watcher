@@ -26,7 +26,7 @@ def get_env_value(name: str) -> str:
     value = os.getenv(name)
     if not value:
         msg = f"Environment variable '{name}' not set"
-        logger.error(msg)
+        logger.critical(msg)
         raise KeyError(msg)
     return value
 
