@@ -104,17 +104,24 @@ python src/website/manage.py migrate
 python src/website/manage.py runserver
 ```
 
-В новом окне терминала перейти в директорию проекта и войти в виртуальное окружение:
+В новом окне терминала перейти в директорию проекта:
 
 ```shell
 cd <PATH>/nsreg-watcher
-source env/bin/activate
+```
+
+Проверить и при необходимости задать права `-rwxrwxr-x` на выполнение `runspiders.sh`:
+```shell
+ls -l runspiders.sh
+```
+```shell
+chmod 775 runspiders.sh
 ```
 
 Выполнить скрипт для запуска scrapy:
 
 ```shell
-sh runspiders.sh
+./runspiders.sh
 ```
 
 Дождаться завершения парсинга.
