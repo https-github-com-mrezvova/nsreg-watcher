@@ -20,7 +20,7 @@
 >- [Python 3.9 - 3.11](https://www.python.org/downloads/) (python-pip, python-dev)
 >- [Docker](https://docs.docker.com/engine/install/)
 >- [PostgreSQL](https://www.postgresql.org/download/). Возможен запуск [PostgresSQL в Docker](#база-данных)
->- Для работы Telegram bot необходимо [создать](https://core.telegram.org/bots#how-do-i-create-a-bot) бата и получить
+>- Для работы Telegram bot необходимо [создать](https://core.telegram.org/bots#how-do-i-create-a-bot) бота и получить
    bot token
 
 ### Установка
