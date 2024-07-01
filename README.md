@@ -104,10 +104,11 @@ python src/website/manage.py migrate
 python src/website/manage.py runserver
 ```
 
-В новом окне терминала перейти в директорию проекта:
+В новом окне терминала перейти в директорию проекта и войти в виртуальное окружение:
 
 ```shell
 cd <PATH>/nsreg-watcher
+source env/bin/activate
 ```
 
 Выполнить скрипт для запуска scrapy:
