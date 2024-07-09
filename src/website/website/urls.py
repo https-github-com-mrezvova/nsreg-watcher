@@ -25,6 +25,6 @@ urlpatterns = [
     path('partner/<int:id>/', views.registrator_details, name='registrator_details'),
     path('admin/', admin.site.urls),
     path('about-us/', views.about, name='about-us'),
+    path('project/', views.about, name='project'),
     path('__debug__/', include('debug_toolbar.urls')),
-    path('project/', views.project_view, name='project'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

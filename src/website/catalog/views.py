@@ -96,23 +96,26 @@ def about(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
-            # Логика обработки из формы обратной связи
-            # отправка сообщения по почте админу.
-
             name = request.POST.get("name")
             contact = request.POST.get("contact")
             speciality = request.POST.get("speciality")
             message = request.POST.get("message")
             send_join_team_mail.delay(name, contact, speciality, message)
-
             return HttpResponseRedirect('/')
-
     else:
         form = ContactForm()
 
     team_members = TeamMember.objects.all()
 
-    return render(request, 'about-us.html', {'contact_form': form, 'team_members': team_members})
+    if request.path == "/about-us/":
+        template_name = 'about-us.html'
+    elif request.path == "/project/":
+        template_name = 'project.html'
+    else:
+        template_name = 'default.html'
+
+    return render(request, template_name, {'contact_form': form, 'team_members': team_members})
+
 
 
 def project_view(request):
