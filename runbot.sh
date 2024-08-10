@@ -5,6 +5,4 @@ if [ -f .env ]; then
 fi
 
 source env/bin/activate
-
-python src/website/manage.py migrate
-python src/website/manage.py runserver
+python -m src.telegram_bot
