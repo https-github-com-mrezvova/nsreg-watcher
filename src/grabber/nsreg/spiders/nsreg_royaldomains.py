@@ -10,7 +10,7 @@ class NsregRoyaldomainsSpider(scrapy.Spider):
     site_names = ('ООО «РОЯЛЬ»',)
     custom_settings = {
         'DOWNLOAD_DELAY': 3,
-        'RANDOMIZE_DOWNLOAD_DELAY': False
+        'RANDOMIZE_DOWNLOAD_DELAY': True
         }
 
     # Конструктор класса
