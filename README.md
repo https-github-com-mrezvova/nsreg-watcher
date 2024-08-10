@@ -1,21 +1,141 @@
 # ngreg-watcher
-## Установка
-1. Скопируйте репозиторий
-2. Установите requirements.txt
-3. Запустить спайдеры:
-```bash
-runspider.sh
+
+[![ecodomen.ru](https://img.shields.io/website?url=https%3A%2F%2Fecodomen.ru%2F)](https://ecodomen.ru/)
+[![flake8 linter](https://github.com/ecodomen/nsreg-watcher/actions/workflows/linter.yml/badge.svg)](https://github.com/ecodomen/nsreg-watcher/actions/workflows/linter.yml)
+[![deploy and build](https://github.com/ecodomen/nsreg-watcher/actions/workflows/deploy.yml/badge.svg)](https://github.com/ecodomen/nsreg-watcher/actions/workflows/deploy.yml)
+
+[![License MIT](https://img.shields.io/badge/licence-MIT-%3A%2F%2F)](https://opensource.org/license/mit/)
+[![Code style black](https://img.shields.io/badge/code%20style-black-black)](https://github.com/psf/black)
+[![Python versions](https://img.shields.io/badge/python-_3.10_|_3.11_-blue)](https://www.python.org/)
+[![Django versions](https://img.shields.io/badge/django-4.1-blue?logo=django)](https://www.djangoproject.com/)
+[![Postgres version](https://img.shields.io/badge/PSQL-14_|_15_|_16-blue?logo=postgresql)](https://www.postgresql.org/)
+[![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?logo=nginx&logoColor=white)](https://nginx.org/)
+[![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?logo=redis&logoColor=white)](https://redis.io/)
+[![Telegram](https://img.shields.io/badge/telegram-blue.svg?logo=telegram&logoColor=white)](https://core.telegram.org/bots/api)
+
+# Установка и запуск
+
+### 💡 Необходимо для запуска
+
+>- [Python 3.9 - 3.11](https://www.python.org/downloads/) (python-pip, python-dev)
+>- [Docker](https://docs.docker.com/engine/install/)
+>- [PostgreSQL](https://www.postgresql.org/download/). Возможен запуск [PostgresSQL в Docker](#база-данных)
+>- Для работы Telegram bot необходимо [создать](https://core.telegram.org/bots#how-do-i-create-a-bot) бота и получить
+   bot token
+
+### Установка
+
+Клонировать репозиторий:
+
+```shell
+git clone git@github.com:ecodomen/nsreg-watcher.git
 ```
-## Создание спайдера
-1.1 Разверните приложение, установите зависимости и активируйте env. Инструкция ниже
 
-1.2 В [папке](/home/maria/projects/nsreg-watcher/src/grabber/nsreg/spiders) нужно создать новый парсер с обязательным нэймингом "nsreg_sitename"
+Перейти в директорию проекта:
 
-2. Посмотрите пример парсера с использованием композиции:
-[src/grabber/nsreg/spiders/nsreg_domainshop.py](src/grabber/nsreg/spiders/nsreg_domainshop.py)
-
-3. По аналогии пишете имена, ссылки в классе вашего Спайдера. site_name нужно найти  на сайте регистратора:
+```shell
+cd nsreg-watcher
 ```
+
+Создать виртуальное окружение.
+
+- Если версии Python, установленная в системе по умолчанию, соответствует [требованиям](#-необходимо-для-запуска),
+  выполнить:
+
+```shell
+python3 -m venv env
+```
+
+- или указать версию Python явно:
+
+```shell
+python3.11 -m venv env
+```
+
+Активировать виртуальное окружение:
+
+```shell
+source env/bin/activate
+```
+
+Обновить pip:
+
+```shell
+pip install pip -U
+```
+
+Установить зависимости:
+
+```shell
+pip install -r requirements.txt
+```
+
+В корневой директории проекта создать файл `.env` и заполнить его по шаблону [.env.template](.env.template)
+
+### База данных
+
+- Использование локальной СУБД PostgreSQL.
+    - Создать базу данных:
+   ```shell
+   createdb -U postgres -h localhost -p 5432 nsreg
+   ```
+
+- Запуск PostgresSQL в Docker.
+    - Экспортировать переменные окружения:
+   ```shell
+   export $(echo $(cat .env | sed 's/#.*//g'| xargs) | envsubst)
+   ```
+    - выполнить запуск сервисов:
+   ```shell
+   sudo docker compose up -d
+   ```
+
+Выполнить миграции:
+
+```shell
+python src/website/manage.py migrate
+```
+
+### Запуск
+
+Запустить dev сервер Django:
+
+```shell
+python src/website/manage.py runserver
+```
+
+В новом окне терминала перейти в директорию проекта:
+
+```shell
+cd <PATH>/nsreg-watcher
+```
+
+Проверить и при необходимости задать права `-rwxrwxr-x` на выполнение `runspiders.sh`:
+```shell
+ls -l runspiders.sh
+```
+```shell
+chmod 775 runspiders.sh
+```
+
+Выполнить скрипт для запуска scrapy:
+
+```shell
+./runspiders.sh
+```
+
+Дождаться завершения парсинга.
+
+# Создание спайдера
+
+В [папке](src/grabber/nsreg/spiders) нужно создать новый парсер с обязательным
+нэймингом "nsreg_sitename"
+
+Посмотрите [пример парсера](src/grabber/nsreg/spiders/nsreg_domainshop.py) с использованием композиции:
+
+По аналогии пишете имена, ссылки в классе вашего Спайдера. site_name нужно найти на сайте регистратора:
+
+```python
 class NsregDomainshopSpider(scrapy.Spider):
     name = "nsreg_domainshop.py"
     start_urls = ["https://domainshop.ru/services/"]
@@ -23,18 +143,22 @@ class NsregDomainshopSpider(scrapy.Spider):
     site_names = ("ООО «Лавка доменов»",)
 ```
 
-4. Подбираете путь к ценам: покупка домена, продление, перенос. Например:
-```
-'price_reg': '/html/body/div/div[2]/div/div/div/div/div[3]/div/div/div/div/table/tbody/tr[1]/td[2]/div/text()',
-```
-Пути можно посмотреть на сайте и скопировать. Могут возникнуть проблемы с тем, что скопированный путь неправильный -- тогда нужно исследовать его самому
+Подбираете путь к ценам: покупка домена, продление, перенос. Например:
 
-5. Подбираете регулярное выражение (поможет сайт Regex):
 ```
+'price_reg': '/html/body/div/div[2]/div/div/div/div/div[3]/div/div/div/div/table/tbody/tr[1]/td[2]/div/text()'
+```
+
+Пути можно посмотреть на сайте и скопировать. Могут возникнуть проблемы с тем, что скопированный путь неправильный --
+тогда нужно исследовать его самому
+
+Подбираете регулярное выражение (поможет сайт Regex):
+
+```python
 regex=r"([0-9]+[.,\s])?руб"
 ```
 
-```
+```python
 # -*- coding: utf-8 -*-
 import scrapy
 
@@ -69,16 +193,20 @@ class NsregDomainshopSpider(scrapy.Spider):
         return self.component.parse(response)
 ```
 
-6. Если вам требуется добавить разные регулярные выражения для каждого из полей, то в поле regex записывается такой dict:
-```
+Если вам требуется добавить разные регулярные выражения для каждого из полей, то в поле regex записывается такой dict:
+
+```python
 regex = {
     'price_reg': 'your_regex1',
     'price_prolong': 'your_regex2',
     'price_change': 'your_regex3'
 }
 ```
-7. В сложных случаях, когда требуется пройтись по разным страницам внутри сайта, вам необходимо переписать функцию parse. Для прохода по разным страницам лучше всего добавить соответствующую функцию:
-```
+
+В сложных случаях, когда требуется пройтись по разным страницам внутри сайта, вам необходимо переписать функцию parse.
+Для прохода по разным страницам лучше всего добавить соответствующую функцию:
+
+```python
 from nsreg.items import NsregItem()
 EMPTY_PRICE = {
     'price_reg': None,
@@ -102,8 +230,10 @@ def parse_price_change(self, response):
 
         yield item
 ```
+
 А также вызвать ее из функции parse:
-```
+
+```python
 def parse(self, response):
     price_reg = response.xpath(self.pathreg).get()
     price_reg = self.find_price(self.regex_reg, price_reg)
@@ -122,69 +252,3 @@ def parse(self, response):
     price['price_change'] = price_change
     item['price'] = price
 ```
-
-
-# Развертывание приложения на Linux
-
-1. Установите Sendmail, docker, docker-compose
-`sudo apt install docker docker-compose`
-2. Запустите скрипт по установке зависимостей
-`sh install.sh`
-	* При возникновении проблем с установкой пакета psycopg2, в файле модифицируйте файл при помощи команды:
-	 `sed -i 's/psycopg2/psycopg2-binary/' requirements.txt`
-3. Создайте файл окружения `.env` по шаблону `env.template`
-4. Запустите PostgreSQL при помощи команд:
-`export $(echo $(cat .env | sed 's/#.*//g'| xargs) | envsubst)`
-`sudo docker-compose up`
-5. Запустите <b>scrapy</b> при помощи команды:
-`sh runspiders.sh`
-6. Запустите dev-сервер Django при помощи команды:
-`sh runsite.sh`
-
-# Развертывание под Windows
-
-## Подготовка системы
-
-Для запуска под виндовс в первую очередь необходимо установить и настроить Windows Subsystem for Linux (WSL). Она доступна в системе по умолчанию начиная с версии 2004 (сборка 19041). Подробнее здесь: https://learn.microsoft.com/ru-ru/windows/wsl/install
-
-Также необходимо установить Docker Desktop (гайд: https://docs.docker.com/desktop/install/windows-install/ )
-
-При скачивании кода проекта обратите внимание на Unix- и Windows-окончания файлов. Рекомендую скачивать через `git clone` либо `git init` + `git remote` + `git pull`, чтобы избежать проблем. Либо воспользуйтесь утилитой dos2unix:
-`sudo apt-get install dos2unix`, затем в папке с приложением
-`dos2unix *`
-
-## Настройка окружения
-
-1. Установите Sendmail, docker, docker-compose
-`sudo apt install sendemail docker docker-compose`
-2. Запустите скрипт по установке зависимостей
-`bash install.sh`
-	* При возникновении проблем с установкой пакета psycopg2, в файле модифицируйте файл при помощи команды:
-	 `sed -i 's/psycopg2/psycopg2-binary/' requirements.txt`
-3. Создайте файл окружения `.env` по шаблону:
-```
-# DOCKER-COMPOSE POSTGRES SETTINGS
-HOSTNAME_DB=localhost
-USERNAME_DB=nsreg
-PASSWORD_DB=Nsreg123
-DATABASE_NAME=nsreg
-PORT_DB=50432
-DOCKER_POSTGRES_PORTS_DB=50432:5432
-
-# SENDMAIL SETTINGS
-EMAIL_FROM=nsregproject@gmail.com
-EMAIL_TO=nsregproject@gmail.com
-EMAIL_SMTP=smtp.gmail.com:587
-EMAIL_LOGIN=nsregproject@gmail.com
-EMAIL_PASS=Nreg123
-
-# DJANGO SETTINGS
-DJANGO_SECRET_KEY='django-insecure-5irxqgp-i8c)jp&f3*%ubm(-u@1a3f^fb^_nete-@ixdb3ek4a'
-```
-4. Запустите PostgreSQL при помощи команд:
-`export $(echo $(cat .env | sed 's/#.*//g'| xargs) | envsubst)`
-`sudo docker-compose up`
-5. Запустите <b>scrapy</b> при помощи команды:
-`bash runspiders.sh`
-6. Запустите dev-сервер Django при помощи команды:
-`bash runsite.sh`

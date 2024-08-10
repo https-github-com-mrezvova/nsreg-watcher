@@ -18,9 +18,9 @@ class MultiSiteSpider4(scrapy.Spider):
             site_names=self.site_names,
             regex=r"([0-9]+)₽.*",
             path={
-                'price_reg': 'translate(/html/body/div[1]/div/main/div/div/div/article/div/div/div/section[3]/div/div/div/div[3]/div/table/tbody/tr[2]/td[2]/text(), " ", "")',
-                'price_prolong': 'translate(/html/body/div[1]/div/main/div/div/div/article/div/div/div/section[3]/div/div/div/div[3]/div/table/tbody/tr[3]/td[2]/text(), " ", "")',
-                'price_change': 'translate(/html/body/div[1]/div/main/div/div/div/article/div/div/div/section[3]/div/div/div/div[3]/div/table/tbody/tr[4]/td[2]/text(), " ", "")',
+                'price_reg': 'translate(/html/body/div[1]/div/main/div/div/div/article/div/div/section[3]/div/div/div/div[3]/div/table/tbody/tr[3]/td[2]/p/text(), " ", "")',
+                'price_prolong': 'translate(/html/body/div[1]/div/main/div/div/div/article/div/div/section[3]/div/div/div/div[3]/div/table/tbody/tr[4]/td[2]/p/text(), " ", "")',
+                'price_change': 'translate(/html/body/div[1]/div/main/div/div/div/article/div/div/section[3]/div/div/div/div[3]/div/table/tbody/tr[5]/td[2]/p/text(), " ", "")',
             },
         )
 
