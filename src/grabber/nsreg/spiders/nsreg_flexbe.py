@@ -18,9 +18,9 @@ class NsregFlexbeSpider(scrapy.Spider):
             site_names=self.site_names,
             regex=r"([0-9]+)[.,\s]?₽.*",
             path={
-                'price_reg': '/html/body/main/section[2]/div[2]/div[3]/div/div/div/div/div[2]/div/div/div/table/tbody/tr[1]/td[2]/text()',
-                'price_prolong': '/html/body/main/section[2]/div[2]/div[3]/div/div/div/div/div[2]/div/div/div/table/tbody/tr[1]/td[3]/text()',
-                'price_change': '/html/body/main/section[2]/div[2]/div[3]/div/div/div/div/div[3]/div/div/div/table/tbody/tr[1]/td[2]/text()'
+                'price_reg': '/html/body/main/section[2]/div[2]/div[3]/div/div/div[2]/div/div/div/table/tbody/tr[1]/td[2]/text()',
+                'price_prolong': '/html/body/main/section[2]/div[2]/div[3]/div/div/div[2]/div/div/div/table/tbody/tr[1]/td[3]/text()',
+                'price_change': '/html/body/main/section[2]/div[2]/div[3]/div/div/div[3]/div/div/div/table/tbody/tr[1]/td[2]/text()'
             }
         )
 
